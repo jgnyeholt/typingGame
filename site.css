@@ -6,8 +6,49 @@ body{
   font-family: 'Raleway', sans-serif;
 }
 
+li {
+  display: inline-block;
+}
+
+header{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: fixed;
+  top:0;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2d3436;
+  color: white;
+}
+
+.game-type{
+  padding: 0;
+}
+
+.game-option{
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  padding: .5em 1em;
+  border-radius: 20px;
+}
+
+.game-option:last-child{
+  margin-left: 1.5em;
+}
+
+.selected{
+  background-color: white;
+  color: #2d3436;
+}
+
+h1{
+  display: inline-block;
+}
+
 main {
-  width: 400px;
+  width: 550px;
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -19,30 +60,49 @@ h2, div{
 }
 
 h2{
-  min-height: 100px;
+  min-height: 150px;
   padding: 1.5em;
   text-align: center;
 }
 
-h3{
-  text-align: left;
-  padding: .75em;
+.stats{
+  background-color: rgba(0,0,0,.03);
+  display: flex;
+  justify-content: space-between;
 }
 
-#completed{
+.time-display{
+  min-width: 160px;
+}
+
+.wpm-display{
+  min-width: 125px;
+}
+
+h3{
+  padding: .75em;
+  display: inline-block;
+}
+
+
+#completed, #time, #WPM{
   padding: .5em 1em;
 }
+
+
+
 
 button, input {
   padding: 1em;
   font-size: 20px;
+  border-radius: 40px;
 }
 
 input{
   border:none;
   background-color: rgba(0,0,0,.05);
   font-family: 'Raleway', sans-serif;
-  width: 400px;
+  width: 550px;
   text-align: center;
   margin: auto;
 }
@@ -53,11 +113,15 @@ input:focus{
 }
 
 button{
-  width: 400px;
+  width: 550px;
   margin-top: 2em;
   border: none;
   background-color: #0984e3;
   color: white;
+}
+
+button:focus{
+  outline: none;
 }
 
 button:hover{

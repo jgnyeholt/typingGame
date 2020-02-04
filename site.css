@@ -1,3 +1,5 @@
+/* general styles */
+
 *{
   box-sizing: border-box;
 }
@@ -10,6 +12,8 @@ li {
   display: inline-block;
 }
 
+/* header */
+
 header{
   display: flex;
   flex-direction: row;
@@ -20,6 +24,7 @@ header{
   align-items: center;
   background-color: #2d3436;
   color: white;
+  z-index: 2;
 }
 
 .game-type{
@@ -47,12 +52,29 @@ h1{
   display: inline-block;
 }
 
+#container {
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: 25s;
+  transition-property: background-color;
+}
+
+/* main */
 main {
-  width: 550px;
+  width: 33%;
+  /* width: 600px; */
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20vh;
+  height: auto;
+  /* margin-top: 10%; */
+  padding: 1.5em;
+  background-color: snow;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 30px 60px rgba(0,0,0,.2);
 }
 
 h2, div{
@@ -65,18 +87,27 @@ h2{
   text-align: center;
 }
 
+/* stats box */
+
 .stats{
   background-color: rgba(0,0,0,.03);
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .time-display{
-  min-width: 160px;
+  /* min-width: 160px; */
+  width: 30%;
 }
 
 .wpm-display{
-  min-width: 125px;
+  /* min-width: 125px; */
+  width: 30%;
+}
+
+.completed-display{
+  width: 30%;
 }
 
 h3{
@@ -90,7 +121,7 @@ h3{
 }
 
 
-
+/* game buttons */
 
 button, input {
   padding: 1em;
@@ -102,7 +133,8 @@ input{
   border:none;
   background-color: rgba(0,0,0,.05);
   font-family: 'Raleway', sans-serif;
-  width: 550px;
+  /* width: 550px; */
+  width: 100%;
   text-align: center;
   margin: auto;
 }
@@ -113,7 +145,8 @@ input:focus{
 }
 
 button{
-  width: 550px;
+  /* width: 550px; */
+  width: 100%;
   margin-top: 2em;
   border: none;
   background-color: #0984e3;
@@ -126,4 +159,160 @@ button:focus{
 
 button:hover{
   box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+/* UI circles */
+
+.shape{
+  position: absolute;
+  transition: 15s;
+  transition-property: top, left;
+}
+
+.border{
+  border: 3px solid rgba(0,0,0,.05);
+}
+
+.full{
+  background-color: rgba(0,0,0,.05);
+}
+
+.small {
+  height: 50px;
+  width: 50px;
+}
+
+.large{
+  height: 75px;
+  width: 75px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+#full-circle{
+  top:0;
+  left:0;
+  transform: translate(0%);
+  animation: float 360s linear infinite;
+}
+
+#full-circle2{
+  top:90%;
+  left:90%;
+  transform: translate(0%);
+  animation: float-reverse 360s linear infinite;
+}
+
+@keyframes float {
+  0%{ top: 0; left: 0;}
+  8%{top:80% ; left:25% ;}
+  16%{top:15% ; left:70% ;}
+  24%{top:50% ; left:90% ;}
+  32%{top:90% ; left:60% ;}
+  40%{top:40% ; left:15% ;}
+  48%{top:10% ; left:30% ;}
+  56%{top:35% ; left:80% ;}
+  64%{top:80% ; left:50% ;}
+  72%{top:60% ; left:20% ;}
+  80%{top:20% ; left:50% ;}
+  88%{top:75% ; left: 75%}
+  100% {top: 0; left: 0;}
+}
+
+@keyframes float-reverse{
+  0%{ top: 90%; left: 90%;}
+  8%  {top:75%; left: 75%;}
+  16%{top:20% ; left:50% ;}
+  24%{top:60% ; left:20% ;}
+  32%{top:80% ; left:50% ;}
+  40%{top:35% ; left:80% ;}
+  48%{top:10% ; left:30% ;}
+  56%{top:40% ; left:15% ;}
+  64%{top:90% ; left:60% ;}
+  72%{top:50% ; left:90% ;}
+  80%{top:15% ; left:70% ;}
+  88%{top:80% ; left:25% ;}
+  100% {top: 90%; left: 90%;}
+}
+
+@media(max-width: 1600px){
+  main{
+    width: 40%;
+  }
+}
+
+@media(max-width: 1450px){
+  main{
+    width: 50%;
+  }
+}
+
+@media(max-width: 1200px){
+  main{
+    width: 60%;
+  }
+}
+
+@media(max-width: 1200px){
+  main{
+    width: 70%;
+  }
+}
+
+@media(max-width: 800px){
+  main{
+    width: 85%;
+  }
+  .stats{
+    flex-direction: column;
+  }
+  .stats h3 {
+    width: 100%;
+  }
+
+  @keyframes float {
+    0%{ top: 0; left: 0;}
+    8%{top:80% ; left:25% ;}
+    16%{top:15% ; left:70% ;}
+    24%{top:50% ; left:85% ;}
+    32%{top:85% ; left:60% ;}
+    40%{top:40% ; left:15% ;}
+    48%{top:10% ; left:30% ;}
+    56%{top:35% ; left:80% ;}
+    64%{top:80% ; left:50% ;}
+    72%{top:60% ; left:20% ;}
+    80%{top:20% ; left:50% ;}
+    88%{top:75% ; left: 75%}
+    100% {top: 0; left: 0;}
+  }
+
+  @keyframes float-reverse{
+    0%{ top: 85%; left: 85%;}
+    8%  {top:75%; left: 75%;}
+    16%{top:20% ; left:50% ;}
+    24%{top:60% ; left:20% ;}
+    32%{top:80% ; left:50% ;}
+    40%{top:35% ; left:80% ;}
+    48%{top:10% ; left:30% ;}
+    56%{top:40% ; left:15% ;}
+    64%{top:85% ; left:60% ;}
+    72%{top:50% ; left:85% ;}
+    80%{top:15% ; left:70% ;}
+    88%{top:80% ; left:25% ;}
+    100% {top: 85%; left: 85%;}
+  }
+}
+
+@media(max-width: 600px){
+  main{
+    width: 95%;
+    margin-top: 20px;
+  }
+  header{
+    flex-direction: column;
+    height: 150px;
+    position: relative;
+  }
 }

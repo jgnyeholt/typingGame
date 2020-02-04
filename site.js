@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () =>{
   init();
+  displayBackground();
 });
 
 let wordArray = words.slice(0, words.length);
@@ -170,7 +171,6 @@ function startTimer(){
 }
 
 function stopTimer(){
-  console.log(timerID);
   clearTimeout(timerID);
   milliseconds = 0;
   seconds = 0;
@@ -214,4 +214,21 @@ function calculateWPM(){
       wpmDisplay.style.color = "black";
     }, 250);
   }
+}
+
+
+///////////////////////////////
+// UI
+function displayBackground(){
+  let container = document.getElementById("container");
+  let colors = ["#a29bfe", "#74b9ff", "#81ecec", "#55efc4", "#ffeaa7", "#fab1a0", "#ff7675", "#fd79a8"];
+  container.style.backgroundColor = colors[0];
+  let counter = 1;
+  let colorID = setInterval(function(){
+    container.style.backgroundColor = colors[counter];
+    counter++;
+    if(counter == colors.length){
+      counter = 0;
+    }
+  }, 30000);
 }

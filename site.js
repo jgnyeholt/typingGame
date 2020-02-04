@@ -17,12 +17,16 @@ function init(){
 
   playButton.addEventListener("click", ()=>{
     if(playButton.value === "start"){
+      completeDisplay.dataset.complete = 0;
+      completeDisplay.textContent = 0;
+      wpmDisplay.textContent = "";
       typingContainer.disabled = false;
       typingContainer.focus();
       findWord();
       playButton.textContent = "Stop";
       playButton.value = "stop";
       startTimer();
+      resetTimer();
     } else if (playButton.value === "stop"){
       resetGame();
     }
@@ -82,10 +86,7 @@ function init(){
     typingContainer.style.backgroundColor = "rgba(0,0,0,.05)";
     playButton.textContent = "Start";
     playButton.value = "start";
-    completeDisplay.dataset.complete = 0;
-    completeDisplay.textContent = 0;
     wordContainer.textContent = "";
-    wpmDisplay.textContent = "";
     stopTimer();
   }
 }
@@ -93,7 +94,6 @@ function init(){
 
 
 function findWord(){
-  resetTimer();
   let wordContainer = document.getElementById("word-container");
   //Find random word based on random number
   let wordArrayLength = wordArray.length;
@@ -135,66 +135,50 @@ function incrementCompleted(numToIncrement){
     completeDisplay.style.backgroundColor = "transparent";
     completeDisplay.style.color = "black";
   }, 250);
-
 }
 
-
-let milliseconds = 0;
+let startTime;
+let currentTime;
+let elapsedTime;
 let seconds = 0;
 let minutes = 0;
 let timerID;
 let minutesDisplay = document.getElementById("min");
 let secondsDisplay = document.getElementById("sec");
-let milliDisplay = document.getElementById("milli");
-let totalMilliseconds = 0; //Used for WPM
-
 
 function startTimer(){
+  startTime = new Date().getTime();
   timerID = setInterval(function(){
-    totalMilliseconds += 10;
-    milliseconds += 1;
-    milliseconds < 10 ? milliDisplay.textContent = "0" + milliseconds : milliDisplay.textContent = milliseconds;
-    if(milliseconds == 99){
-      seconds += 1;
-      milliseconds = 0;
-      milliDisplay.textContent = "00";
-      seconds < 10 ? secondsDisplay.textContent = "0" + seconds : secondsDisplay.textContent = seconds;
-    }
-    if(seconds == 59){
-      minutes += 1;
-      seconds = 0;
-      secondsDisplay.textContent = "00";
+    currentTime = new Date().getTime();
+    elapsedTime = currentTime - startTime;
+    minutes = Math.floor(elapsedTime/60000);
+    seconds = Math.floor((elapsedTime - minutes * 60000)/1000);
+    seconds < 10 ? secondsDisplay.textContent = "0" + seconds : secondsDisplay.textContent = seconds;
+    if(seconds = 59){
       minutes < 10 ? minutesDisplay.textContent = "0" + minutes : minutesDisplay.textContent = minutes;
-
     }
-  }, 10);
+  }, 1000);
 }
 
 function stopTimer(){
   clearTimeout(timerID);
-  milliseconds = 0;
-  seconds = 0;
-  minutes = 0;
-  minutesDisplay.textContent = "00";
-  secondsDisplay.textContent = "00";
-  milliDisplay.textContent = "00";
 }
 
 function resetTimer(){
-  milliseconds = 0;
   seconds = 0;
   minutes = 0;
   minutesDisplay.textContent = "00";
   secondsDisplay.textContent = "00";
-  milliDisplay.textContent = "00";
+  //milliDisplay.textContent = "00";
 }
 
 function calculateWPM(){
+  let totalMilliseconds = new Date().getTime() - startTime;
   let wpmDisplay = document.getElementById("WPM");
   let currentWPM = wpmDisplay.textContent;
   let wordsCompleted = document.getElementById("completed").dataset.complete;
   let newWPM = (60000 * Number(wordsCompleted)) / totalMilliseconds;
-  wpmDisplay.textContent = Math.floor(newWPM);
+  wpmDisplay.textContent = Math.ceil(newWPM);
 
   //UI
   if(newWPM < currentWPM){

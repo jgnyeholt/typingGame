@@ -23,9 +23,9 @@
       </header>
       <main>
         <div class="stats">
-          <h3 class="completed-display">Words: <span id="completed" data-complete="0">0</span></h3>
+          <h3 class="completed-display">Words: <span id="completed" data-complete="0"></span></h3>
           <h3 class="wpm-display" title="Words per minute">WPM: <span id="WPM"></span></h3>
-          <h3 class="time-display">Time: <span id="min">00</span>:<span id="sec">00</span>.<span id="milli">00</span></h3>
+          <h3 class="time-display">Time: <span id="min">00</span>:<span id="sec">00</span></h3>
         </div>
         <h2 id="word-container"></h2>
         <div>

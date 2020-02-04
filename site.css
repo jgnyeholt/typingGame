@@ -115,6 +115,12 @@ h3{
   display: inline-block;
 }
 
+#milli{
+  font-size: .75em;
+  margin-left: 2px;
+  position: relative;
+  transform: translateY(-5px);
+}
 
 #completed, #time, #WPM{
   padding: .5em 1em;

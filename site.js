@@ -177,9 +177,8 @@ function calculateWPM(){
   let wpmDisplay = document.getElementById("WPM");
   let currentWPM = wpmDisplay.textContent;
   let wordsCompleted = document.getElementById("completed").dataset.complete;
-  let newWPM = (60000 * Number(wordsCompleted)) / totalMilliseconds;
-  wpmDisplay.textContent = Math.ceil(newWPM);
-
+  let newWPM = Math.ceil((60000 * Number(wordsCompleted)) / totalMilliseconds);
+  wpmDisplay.textContent = newWPM;
   //UI
   if(newWPM < currentWPM){
     wpmDisplay.style.backgroundColor = "#d63031";
